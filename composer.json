@@ -9,10 +9,12 @@
     },
     "authors": [
         {
-            "name": "HamzaHassanM"
+            "name": "HamzaHassanM",
+            "email": "hamza.hassan.dev@gmail.com"
         }
     ],
     "require": {
+        "php": "^8.1",
         "guzzlehttp/guzzle": "^7.2"
     },
     "extra": {
