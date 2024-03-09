@@ -1,0 +1,29 @@
+{
+    "name": "hamzahassanm/namecheap-api",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Hamzahassanm\\NamecheapApi\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "HamzaHassanM"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.2"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Hamzahassanm\\NamecheapApi\\NamceCheapApiServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {}
+    }
+}
