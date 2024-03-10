@@ -14,7 +14,7 @@ composer require hamzahassanm/namecheap-api
 Optionally, you can publish the config file with:
 
 ```bash
-php artisan vendor:publish --tag=config --provider="Hamzahassanm\NamecheapApi\NamceCheapApiServiceProvider"
+php artisan vendor:publish --tag=config --provider="Hamzahassanm\NamecheapApi\NameCheapApiServiceProvider"
 ```
 
 ## Usage
