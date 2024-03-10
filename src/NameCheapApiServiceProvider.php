@@ -2,9 +2,10 @@
 
 namespace Hamzahassanm\NamecheapApi;
 
+
 use Illuminate\Support\ServiceProvider;
 
-class NamceCheapApiServiceProvider extends  ServiceProvider {
+class NameCheapApiServiceProvider extends  ServiceProvider {
     public function boot()
     {
 

@@ -5,7 +5,7 @@ namespace Hamzahassanm\NamecheapApi\Requests;
 use Hamzahassanm\NamecheapApi\Enums\State;
 use Illuminate\Support\Facades\Http;
 
-class MainRequestBuilder {
+abstract  class MainRequest {
 
     public string $url;
 
@@ -15,23 +15,23 @@ class MainRequestBuilder {
         $this->prepareUrlData();
     }
 
-    public function getUri() {
+    public function getUri(): string {
 
         return $this->url;
     }
 
-    private function setSandBoxFullUrl() {
+    private function setSandBoxUrl(): void {
         $config = config('namecheap.sandbox');
         $this->url = $config['api_url'];
         $this->setFixedParams($config);
     }
 
-    private function setProductionFullUrl() {
+    private function setProductionUrl(): void {
         $config = config('namecheap.production');
         $this->url = $config['api_url'];
     }
 
-    private function setFixedParams($config) {
+    private function setFixedParams($config): void {
         $this->fixed_params = [
             'ApiUser'  => $config['username'],
             'ApiKey'   => $config['api_key'],
@@ -41,16 +41,16 @@ class MainRequestBuilder {
     }
 
 
-    private function prepareUrlData() {
+    private function prepareUrlData(): void {
         $state = config('namecheap.default');
 
         switch ($state) {
             case State::PRODUCTION->value :
-                $this->setProductionFullUrl();
+                $this->setProductionUrl();
 
             case State::SANDBOX->value:
             default :
-                $this->setSandBoxFullUrl();
+                $this->setSandBoxUrl();
         }
     }
 
@@ -66,36 +66,5 @@ class MainRequestBuilder {
         $body = $response->getBody()->getContents();
         $xmlResponse = simplexml_load_string($body);
        return  $arrayResponse = json_decode(json_encode($xmlResponse), true);
-    }
-
-    public function getDomainsList() {
-        return $this->get(['Command' => 'namecheap.domains.getList']);
-    }
-
-
-    public function getDomainsPrices() {
-        return $this->get(['Command' => 'namecheap.users.getPricing' , 'ProductType' => 'DOMAIN']);
-    }
-
-    public function getDomainsInfo(string $domain , string $hostname = null ) {
-        $params = ['Command' => 'namecheap.domains.getinfo' , 'DomainName' => $domain];
-        if (!is_null($hostname)){
-            $params = array_merge($params,['HostName' => $hostname]);
-        }
-        return $this->get($params);
-    }
-
-    public function checkDomains(string $name , string $suffix = null  , bool $all = true) {
-        $params = ['Command' => 'namecheap.domains.check' , 'DomainList' => $name];
-        if (!is_null($suffix)){
-            $params = array_merge($params,['DomainList' => $name.'.'.$suffix]);
-        }
-        return $this->get($params);
-    }
-
-
-    public function getTldDomainList() {
-        return $this->get(['Command' => 'namecheap.domains.gettldlist']);
-
     }
 }
