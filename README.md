@@ -1,4 +1,4 @@
-# Namecheap API Wrapper Package
+# Namecheap API Wrapper Package for Laravel
 
 This package provides a wrapper for interacting with the Namecheap API. It allows you to perform various domain-related operations such as retrieving domain information, managing domain contacts, renewing domains, and more.
 
