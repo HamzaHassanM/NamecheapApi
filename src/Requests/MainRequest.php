@@ -5,7 +5,7 @@ namespace Hamzahassanm\NamecheapApi\Requests;
 use Hamzahassanm\NamecheapApi\Enums\State;
 use Illuminate\Support\Facades\Http;
 
-abstract  class MainRequest {
+abstract class MainRequest {
 
     public string $url;
 
@@ -60,11 +60,11 @@ abstract  class MainRequest {
 
         try {
             $response = Http::get($this->url, $params);
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
             return $e;
         }
         $body = $response->getBody()->getContents();
-        $xmlResponse = simplexml_load_string($body);
-       return  $arrayResponse = json_decode(json_encode($xmlResponse), true);
+        $xml_response = simplexml_load_string($body);
+        return json_decode(json_encode($xml_response), true);
     }
 }

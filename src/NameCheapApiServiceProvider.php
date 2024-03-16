@@ -3,6 +3,7 @@
 namespace Hamzahassanm\NamecheapApi;
 
 
+use Hamzahassanm\NamecheapApi\Requests\DomainRequests;
 use Illuminate\Support\ServiceProvider;
 
 class NameCheapApiServiceProvider extends  ServiceProvider {
@@ -17,6 +18,9 @@ class NameCheapApiServiceProvider extends  ServiceProvider {
     public function register()
     {
         $this->mergeConfigFrom(__DIR__.'/config/namecheap.php', 'namecheap');
+        $this->app->singleton('domain', function ($app) {
+            return new DomainRequests();
+        });
     }
 
 }

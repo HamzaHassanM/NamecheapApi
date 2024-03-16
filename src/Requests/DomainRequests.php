@@ -24,10 +24,10 @@ class DomainRequests extends MainRequest {
     }
 
 
-    public function checkDomains(string $name, string $suffix = null, bool $all = true) {
+    public function checkDomains(string $name, string $domain_suffix = null, bool $all = true) {
         $params = ['Command' => Commands::CHECK_DOMAIN->value, 'DomainList' => $name];
-        if (!is_null($suffix)) {
-            $params = array_merge($params, ['DomainList' => $name . '.' . $suffix]);
+        if (!is_null($domain_suffix)) {
+            $params = array_merge($params, ['DomainList' => $name . '.' . $domain_suffix]);
         }
         return $this->get($params);
     }
