@@ -18,7 +18,7 @@ class NameCheapApiServiceProvider extends  ServiceProvider {
     public function register()
     {
         $this->mergeConfigFrom(__DIR__.'/config/namecheap.php', 'namecheap');
-        $this->app->singleton('domain', function ($app) {
+        $this->app->singleton('namecheapdomain', function ($app) {
             return new DomainRequests();
         });
     }

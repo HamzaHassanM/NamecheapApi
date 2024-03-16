@@ -1,7 +1,9 @@
 <?php
 
 namespace Hamzahassanm\NamecheapApi\Facade;
-class Domain extends \Illuminate\Support\Facades\Facade {
+use Illuminate\Support\Facades\Facade;
+
+class NameCheapDomain extends Facade {
 
     /**
      * @see \Hamzahassanm\NamecheapApi\Requests\DomainRequests
@@ -18,8 +20,9 @@ class Domain extends \Illuminate\Support\Facades\Facade {
      * @method static setRegistrarLock(string $domain, string $lock_action = 'LOCK')
      */
 
+
     protected static function getFacadeAccessor(): string {
-        return 'domain';
+        return 'namecheapdomain';
     }
 
 }
